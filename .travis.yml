@@ -1,4 +1,4 @@
 arch: s390x
 services:
   - docker
-script: docker login quay.io -u $ROBOT_USER -p $ROBOT_TOKEN && docker build . --tag testme && docker push quay.io/zacburns/multiarch-example
+script: docker login quay.io -u $ROBOT_USER -p $ROBOT_TOKEN && docker build . --tag quay.io/zacburns/multiarch-example && docker push quay.io/zacburns/multiarch-example
