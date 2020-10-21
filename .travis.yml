@@ -1,4 +1,9 @@
 arch: s390x
 services:
   - docker
-script: docker login quay.io -u $ROBOT_USER -p $ROBOT_TOKEN && docker build . --tag quay.io/zacburns/multiarch-example && docker push quay.io/zacburns/multiarch-example
+before_script: 
+  - cd $TEST_DIR && chmod +x $TEST_SCRIPT
+  - docker login quay.io -u $ROBOT -p $ROBOT_TOKEN
+script: 
+  - docker build $BUILD_DIR --tag $TAG
+  - if [ "$TEST_SCRIPT" ]; then cd $TEST_DIR && bash $TEST_SCRIPT; fi 
