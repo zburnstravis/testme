@@ -2,7 +2,7 @@ arch: s390x
 services:
   - docker
 before_script: 
-  - cd $TEST_DIR && chmod +x $TEST_SCRIPT
+  - if [ "$TEST_SCRIPT" ]; then cd $TEST_DIR && chmod +x $TEST_SCRIPT; fi
   - docker login quay.io -u $ROBOT -p $ROBOT_TOKEN
 script: 
   - docker build $BUILD_DIR --tag $TAG
